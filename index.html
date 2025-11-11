@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tennisverein Wochenplaner</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <h1>Tennisverein Wochenplaner</h1>
+    <div class="controls">
+      <button id="addEventBtn" class="primary">Termin hinzufügen</button>
+      <button id="exportPdfBtn" class="secondary">Als PDF exportieren</button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="time-axis" id="timeAxis"></aside>
+    <section class="planner-wrapper">
+      <div class="planner" id="planner"></div>
+    </section>
+  </main>
+
+  <dialog id="eventDialog">
+    <form method="dialog" id="eventForm">
+      <h2>Termin erstellen</h2>
+      <label>
+        Titel
+        <input type="text" id="eventTitle" required>
+      </label>
+      <label>
+        Trainer
+        <select id="trainerSelect"></select>
+      </label>
+      <label>
+        Tag
+        <select id="daySelect"></select>
+      </label>
+      <label>
+        Platz
+        <select id="courtSelect"></select>
+      </label>
+      <label>
+        Startzeit
+        <input type="time" id="startTime" min="14:00" max="22:00" step="900" value="14:00" required>
+      </label>
+      <label>
+        Dauer (Minuten)
+        <input type="number" id="duration" min="15" step="15" value="60" required>
+      </label>
+      <menu>
+        <button value="cancel">Abbrechen</button>
+        <button type="submit" value="default" class="primary">Speichern</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <template id="eventTemplate">
+    <div class="event">
+      <div class="event-content">
+        <span class="event-title"></span>
+        <span class="event-trainer"></span>
+        <span class="event-time"></span>
+      </div>
+      <button class="event-delete" title="Termin löschen">×</button>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
